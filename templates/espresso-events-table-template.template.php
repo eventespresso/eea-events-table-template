@@ -1,10 +1,22 @@
 <?php
 $temp_month = '';
-
 if ( have_posts() ) :
 	// allow other stuff
 	do_action( 'AHEE__espresso_events_table_template_template__before_loop' );
 	?>
+	<p class="category-filter"><label><?php echo __('Filter by category ', 'event_espresso'); ?></label>
+	<select class="" id="ee_filter_cat">
+	<option class="ee_filter_show_all"><?php echo __('Show All', 'event_espresso'); ?></option>
+	<?php
+	$taxonomy = array('espresso_event_categories');
+	$args = array('orderby'=>'name','hide_empty'=>true);
+	$myterms = get_terms($taxonomy, $args);
+	foreach($myterms as $term){
+		echo '<option class="' . $term->slug . '">'. $term->name . '</option>';
+	}
+    ?>
+	</select></p>
+
 	<table id="ee_filter_table" class="espresso-table" width="100%">
 	<thead class="espresso-table-header-row">
 		<tr>
@@ -24,6 +36,20 @@ if ( have_posts() ) :
 		//Debug
 		//d( $post );
 		
+		//Get the category for this event
+		$event = EEH_Event_View::get_event();
+		if ( $event instanceof EE_Event ) {
+			if ( $event_categories = get_the_terms( $event->ID(), 'espresso_event_categories' )) {
+				// loop thru terms and create links
+				$category_slugs = '';
+				foreach ( $event_categories as $term ) {
+					$category_slugs[] = $term->slug;
+				}
+			}
+		}
+		$category_slugs = implode( ' ', $category_slugs );
+
+		//Create the event link
 		$button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
 		$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 		$external_url 		= $post->EE_Event->external_url();
@@ -49,7 +75,7 @@ if ( have_posts() ) :
 			}
 		}
 		?>
-		<tr class="espresso-table-row ?>">
+		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td id="event_title-<?php echo $post->ID; ?>" class="event_title"><?php echo $post->post_title ?></td>
 			<td id="venue_title-<?php echo $post->ID; ?>" class="venue_title"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
 			<td id="start_date-<?php echo $post->ID; ?>" class="start_date"><?php echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)) ?></td>
