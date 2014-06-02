@@ -10,8 +10,8 @@ if ( have_posts() ) :
 	<?php
 	$taxonomy = array('espresso_event_categories');
 	$args = array('orderby'=>'name','hide_empty'=>true);
-	$myterms = get_terms($taxonomy, $args);
-	foreach($myterms as $term){
+	$ee_terms = get_terms($taxonomy, $args);
+	foreach($ee_terms as $term){
 		echo '<option class="' . $term->slug . '">'. $term->name . '</option>';
 	}
     ?>
