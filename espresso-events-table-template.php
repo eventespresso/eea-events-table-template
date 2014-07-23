@@ -36,12 +36,12 @@
  *
  * ------------------------------------------------------------------------
  */
+// events_table_template version
+define( 'EE_EVENTS_TABLE_TEMPLATE_VERSION', '0.0.1.dev.001' );
+define( 'EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE',  __FILE__ );
 
 function load_espresso_events_table_template() {
 	if ( class_exists( 'EE_Addon' )) {
-		// events_table_template version
-		define( 'EE_EVENTS_TABLE_TEMPLATE_VERSION', '0.0.1.dev.001' );
-		define( 'EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE',  __FILE__ );
 		require_once ( plugin_dir_path( __FILE__ ) . 'EE_Events_Table_Template.class.php' );
 		EE_Events_Table_Template::register_addon();
 	}

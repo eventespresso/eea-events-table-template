@@ -11,6 +11,10 @@
  *
  * ------------------------------------------------------------------------
  */
+// define the plugin directory path and URL
+		define( 'EE_EVENTS_TABLE_TEMPLATE_PATH', plugin_dir_path( __FILE__ ));
+		define( 'EE_EVENTS_TABLE_TEMPLATE_URL', plugin_dir_url( __FILE__ ));
+		define( 'EE_EVENTS_TABLE_TEMPLATE_TEMPLATES', EE_EVENTS_TABLE_TEMPLATE_PATH . DS . 'templates' );
 Class  EE_Events_Table_Template extends EE_Addon {
 
 	/**
@@ -22,10 +26,7 @@ Class  EE_Events_Table_Template extends EE_Addon {
 	}
 
 	public static function register_addon() {
-		// define the plugin directory path and URL
-		define( 'EE_EVENTS_TABLE_TEMPLATE_PATH', plugin_dir_path( __FILE__ ));
-		define( 'EE_EVENTS_TABLE_TEMPLATE_URL', plugin_dir_url( __FILE__ ));
-		define( 'EE_EVENTS_TABLE_TEMPLATE_TEMPLATES', EE_EVENTS_TABLE_TEMPLATE_PATH . DS . 'templates' );
+		
 		// register addon via Plugin API
 		EE_Register_Addon::register(
 			'Events_Table_Template',
