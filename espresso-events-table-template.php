@@ -49,4 +49,4 @@ function load_espresso_events_table_template() {
 add_action( 'AHEE__EE_System__load_espresso_addons', 'load_espresso_events_table_template' );
 
 // End of file espresso_events_table_template.php
-// Location: wp-content/plugins/espresso-new-addon/espresso_events_table_template.php
+// Location: wp-content/plugins/espresso-events-table-template/espresso_events_table_template.php

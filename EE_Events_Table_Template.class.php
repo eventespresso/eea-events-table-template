@@ -5,7 +5,7 @@
  * Class  EE_Events_Table_Template
  *
  * @package			Event Espresso
- * @subpackage		espresso-new-addon
+ * @subpackage		espresso-events-table-template
  * @author			    Brent Christensen
  * @ version		 	$VID:$
  *
@@ -89,4 +89,4 @@ Class  EE_Events_Table_Template extends EE_Addon {
 
 }
 // End of file EE_Events_Table_Template.class.php
-// Location: wp-content/plugins/espresso-new-addon/EE_Events_Table_Template.class.php
+// Location: wp-content/plugins/espresso-events-table-template/EE_Events_Table_Template.class.php

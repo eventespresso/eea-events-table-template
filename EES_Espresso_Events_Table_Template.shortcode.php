@@ -18,7 +18,7 @@
  * EES_Espresso_Events_Table_Template
  *
  * @package			Event Espresso
- * @subpackage		espresso-new-addon
+ * @subpackage		espresso-events-table-template
  * @author 				Brent Christensen
  * @ version		 	$VID:$
  *
@@ -292,4 +292,4 @@ class EE_Events_Table_Template_Query extends WP_Query {
 }
 
 // End of file EES_Espresso_Events_Table_Template.shortcode.php
-// Location: /wp-content/plugins/espresso-new-addon/EES_Espresso_Events_Table_Template.shortcode.php
+// Location: /wp-content/plugins/espresso-events-table-template/EES_Espresso_Events_Table_Template.shortcode.php
