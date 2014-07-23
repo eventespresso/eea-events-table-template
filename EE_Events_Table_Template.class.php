@@ -31,14 +31,14 @@ Class  EE_Events_Table_Template extends EE_Addon {
 			'Events_Table_Template',
 			array(
 				'version' 					=> EE_EVENTS_TABLE_TEMPLATE_VERSION,
-				'min_core_version' => '4.3.0',
+				'min_core_version' 			=> '4.3.0',
 				'base_path' 				=> EE_EVENTS_TABLE_TEMPLATE_PATH,
-				'main_file_path' => EE_CALENDAR_TABLE_TEMPLATE_PATH . 'espresso-events-table-template.php',
-				'autoloader_paths' => array(
+				'main_file_path' 			=> EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE . 'espresso-events-table-template.php',
+				'autoloader_paths' 			=> array(
 					'EE_Events_Table_Template' 	=> EE_EVENTS_TABLE_TEMPLATE_PATH . 'EE_Events_Table_Template.class.php',
 				),
-				'shortcode_paths' 	=> array( EE_EVENTS_TABLE_TEMPLATE_PATH . 'EES_Espresso_Events_Table_Template.shortcode.php' ),
-				//The below is for if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
+				'shortcode_paths' 	=> array( EE_EVENTS_TABLE_TEMPLATE_PATH . 'EES_Events_Table_Template.shortcode.php' ),
+				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
 					'pue_plugin_slug' => 'espresso_events_table_template',
 					'plugin_basename' => EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE,
@@ -48,6 +48,8 @@ Class  EE_Events_Table_Template extends EE_Addon {
 			)
 		);
 	}
+
+
 
 	/**
 	 * 	additional_admin_hooks
@@ -61,7 +63,6 @@ Class  EE_Events_Table_Template extends EE_Addon {
 			add_filter( 'plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );
 		}
 	}
-
 
 
 

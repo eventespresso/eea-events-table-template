@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Event Espresso - Events Table Template
+  Plugin Name: Event Espresso - Events Table Template New
   Plugin URI: http://www.eventespresso.com
   Description: The Event Espresso Events Table Template adds a events table view to Event Espresso 4
   Version: 0.0.1.dev.001
@@ -36,11 +36,12 @@
  *
  * ------------------------------------------------------------------------
  */
+
 function load_espresso_events_table_template() {
 	if ( class_exists( 'EE_Addon' )) {
 		// events_table_template version
 		define( 'EE_EVENTS_TABLE_TEMPLATE_VERSION', '0.0.1.dev.001' );
-		define( 'EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE', plugin_basename( __FILE__ ));
+		define( 'EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE',  __FILE__ );
 		require_once ( plugin_dir_path( __FILE__ ) . 'EE_Events_Table_Template.class.php' );
 		EE_Events_Table_Template::register_addon();
 	}
