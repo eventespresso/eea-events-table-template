@@ -105,7 +105,7 @@ class EES_Events_Table_Template  extends EES_Shortcode {
 	/**
 	 *    process_shortcode
 	 *
-	 *    [ESPRESSO_EVENTS_TABLE_TEMPLATE]
+	 *    [EVENTS_TABLE_TEMPLATE]
 	 *
 	 * @access 	public
 	 * @param 	array $attributes
