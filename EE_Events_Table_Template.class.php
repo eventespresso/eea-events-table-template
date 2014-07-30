@@ -35,6 +35,7 @@ Class  EE_Events_Table_Template extends EE_Addon {
 				'min_core_version' 			=> '4.3.0',
 				'base_path' 				=> EE_EVENTS_TABLE_TEMPLATE_PATH,
 				'main_file_path' 			=> EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE . 'espresso-events-table-template.php',
+				//'admin_callback'		=> 'additional_admin_hooks',
 				'autoloader_paths' 			=> array(
 					'EE_Events_Table_Template' 	=> EE_EVENTS_TABLE_TEMPLATE_PATH . 'EE_Events_Table_Template.class.php',
 				),
