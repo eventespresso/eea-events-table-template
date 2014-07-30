@@ -4,6 +4,7 @@
   Plugin URI: http://www.eventespresso.com
   Description: The Event Espresso Events Table Template adds a events table view to Event Espresso 4
   Shortcode Example: [ESPRESSO_EVENTS_TABLE_TEMPLATE]
+  Default Shortcode Parameters: limit = 10, show_expired = FALSE, month = NULL, category_slug = NULL, order_by = start_date, sort = ASC
   Version: 0.0.1.dev.001
   Author: Event Espresso
   Author URI: http://www.eventespresso.com
