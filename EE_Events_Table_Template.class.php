@@ -38,7 +38,7 @@ Class  EE_Events_Table_Template extends EE_Addon {
 				'autoloader_paths' 			=> array(
 					'EE_Events_Table_Template' 	=> EE_EVENTS_TABLE_TEMPLATE_PATH . 'EE_Events_Table_Template.class.php',
 				),
-				'shortcode_paths' 	=> array( EE_EVENTS_TABLE_TEMPLATE_PATH . 'EES_Events_Table_Template.shortcode.php' ),
+				'shortcode_paths' 	=> array( EE_EVENTS_TABLE_TEMPLATE_PATH . 'EES_Espresso_Events_Table_Template.shortcode.php' ),
 				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
 					'pue_plugin_slug' => 'espresso_events_table_template',
