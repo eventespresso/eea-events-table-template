@@ -45,10 +45,13 @@ if ( have_posts() ) :
 				foreach ( $event_categories as $term ) {
 					$category_slugs[] = $term->slug;
 				}
+				$category_slugs = implode(' ', $category_slugs);
+			} else {
+				// event has no terms
+				$category_slugs = '';
 			}
-		}
-		$category_slugs = implode( ' ', $category_slugs );
 
+		}
 		//Create the event link
 		$button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
 		$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
