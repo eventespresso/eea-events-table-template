@@ -26,7 +26,7 @@ if ( have_posts() ) :
 	</p>
 	<?php } ?>
 	
-	<?php if ($table_search != 'false'){ ?>
+	<?php if ($footable != 'false' && $table_search != 'false'){ ?>
 	<p>
         <?php echo __('Search:', 'event_espresso'); ?> <input id="filter" type="text"/>
     </p>
@@ -42,7 +42,7 @@ if ( have_posts() ) :
 			<th class="th-group" data-sort-ignore="true"></th>
 		</tr>
 	</thead>
-	<?php if ($table_paging != 'false'){ ?>
+	<?php if ($footable != 'false' && $table_paging != 'false'){ ?>
 	<tfoot>
 		<tr>
 			<td colspan="2">
