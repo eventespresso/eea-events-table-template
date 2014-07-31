@@ -16,4 +16,6 @@ jQuery(document).ready(function($){
 		}
 	});
 
+
+	$('.footable').footable();
 });

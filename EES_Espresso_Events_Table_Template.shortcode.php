@@ -92,12 +92,15 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 		} else {
 			// EE events_table_template style
 			wp_register_style( 'espresso_events_table_template', EE_EVENTS_TABLE_TEMPLATE_URL . 'css' . DS . 'espresso_events_table_template.css' );
-		}
+		}	
+
 		// events_table_template script
 		wp_register_script( 'espresso_events_table_template', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'espresso_events_table_template.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
+		
 		// enqueue
 		wp_enqueue_style( 'espresso_events_table_template' );
 		wp_enqueue_script( 'espresso_events_table_template' );
+		
 	}
 
 
@@ -116,27 +119,73 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 		$attributes = array_merge(
 			// defaults
 			array(
-				//'title' => NULL,
-				'limit' => 10,
-				//'css_class' => NULL,
-				'show_expired' => FALSE,
-				'month' => NULL,
-				'category_slug' => NULL,
-				'order_by' => 'start_date',
-				'sort' => 'ASC',
-				//'show_featured' => '0',
-				//'table_header' => '1'
+				'template_file'		=> 'espresso-events-table-template.template.php',
+				'limit' 			=> 10,
+				'show_expired' 		=> FALSE,
+				'month' 			=> NULL,
+				'category_slug' 	=> NULL,
+				'category_filter' 	=> NULL,
+				'order_by' 			=> 'start_date',
+				'sort'				=> 'ASC',
+				'footable'			=> NULL,
+				'table_style'		=> 'standalone',
+				'table_sort'		=> NULL,
+				'table_paging'		=> NULL,
+				'table_pages'		=> 10,
+				'table_striping'	=> NULL,
+				'table_filter'		=> NULL,
+				'table_search'		=> NULL,
+				
 			),
 			(array)$attributes
 		);
+
+		if ( $attributes['footable'] != 'false' ){
+			//FooTable Styles
+			wp_register_style( 'footable-core', EE_EVENTS_TABLE_TEMPLATE_URL . 'css' . DS . 'footable.core.css' );
+			wp_enqueue_style( 'footable-core' );
+
+			wp_register_style( 'footable-'.$attributes['table_style'], EE_EVENTS_TABLE_TEMPLATE_URL . 'css' . DS . 'footable.'.$attributes['table_style'].'.css' );
+			wp_enqueue_style( 'footable-'.$attributes['table_style'] );
+
+			//FooTable Scripts
+			wp_register_script( 'footable', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
+			// enqueue scripts
+			wp_enqueue_script( 'footable' );
+			
+			//FooTable Sorting
+			if ( $attributes['table_sort'] != 'false' ){
+				wp_register_script( 'footable-sort', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.sort.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
+				wp_enqueue_script( 'footable-sort' );
+			}
+
+			//FooTable Striping
+			if ( $attributes['table_striping'] != 'false' ){
+				wp_register_script( 'footable-striping', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.striping.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
+				wp_enqueue_script( 'footable-striping' );
+			}
+
+			//FooTable Pagination
+			if ( $attributes['table_paging'] != 'false' ){
+				wp_register_script( 'footable-paginate', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.paginate.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
+				wp_enqueue_script( 'footable-paginate' );
+			}
+
+			//FooTable Filter
+			if ( $attributes['table_filter'] != 'false' ){
+				wp_register_script( 'footable-filter', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.filter.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
+				wp_enqueue_script( 'footable-filter' );
+			}
+		}
+
 		// run the query
 		global $wp_query;
 		$wp_query = new EE_Events_Table_Template_Query( $attributes );
-//		d( $wp_query );
+		//d( $wp_query );
 		// now filter the array of locations to search for templates
 		add_filter( 'FHEE__EEH_Template__locate_template__template_folder_paths', array( $this, 'template_folder_paths' ));
 		// load our template
-		$events_table_template = EEH_Template::locate_template( 'espresso-events-table-template.template.php', $attributes );
+		$events_table_template = EEH_Template::locate_template( $attributes['template_file'], $attributes );
 		// now reset the query and postdata
 		wp_reset_query();
 		wp_reset_postdata();

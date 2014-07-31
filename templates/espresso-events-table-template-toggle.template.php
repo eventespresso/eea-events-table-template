@@ -7,10 +7,10 @@ if ( have_posts() ) :
 	// allow other stuff
 	do_action( 'AHEE__espresso_events_table_template_template__before_loop' );
 	?>
-	
+
 	<?php if ($category_filter != 'false'){ ?>
 	<p class="category-filter">
-		<label><?php echo __('Category Filter', 'event_espresso'); ?></label>
+		<label><?php echo __('Category Filter:', 'event_espresso'); ?></label> 
 		<select class="" id="ee_filter_cat">
 		<option class="ee_filter_show_all"><?php echo __('Show All', 'event_espresso'); ?></option>
 		<?php
@@ -32,19 +32,20 @@ if ( have_posts() ) :
     </p>
     <?php } ?>
 
-	<table id="ee_filter_table" class="espresso-table footable table" data-page-size="<?php echo $table_pages; ?>" data-filter="#filter">
+	<table id="ee_filter_table" class="espresso-table footable table" width="100%" data-page-size="<?php echo $table_pages; ?>" data-filter="#filter">
 	<thead class="espresso-table-header-row">
 		<tr>
-			<th class="th-group"><?php _e('Event','event_espresso'); ?></th>
-			<th class="th-group"><?php _e('Venue','event_espresso'); ?></th>
-			<th class="th-group"><?php _e('Date','event_espresso'); ?></th>
+			<th data-toggle="true" class="th-group"><?php _e('Event','event_espresso'); ?></th>
+			<th data-hide="all" class="th-group"><?php _e('Venue','event_espresso'); ?></th>
+			<th data-hide="all" class="th-group"><?php _e('Date','event_espresso'); ?></th>
+			<th data-hide="all" class="th-group"><?php _e('Description','event_espresso'); ?></th>
 			<th class="th-group" data-sort-ignore="true"></th>
 		</tr>
 	</thead>
 	<?php if ($table_paging != 'false'){ ?>
 	<tfoot>
 		<tr>
-			<td colspan="4">
+			<td colspan="2">
 				<div class="pagination pagination-centered"></div>
 			</td>
 		</tr>
@@ -91,6 +92,7 @@ if ( have_posts() ) :
 		
 		//Debug
 		//d( $venue );
+		//d( $post->EE_Event );
 
 		if ( $venue instanceof EE_Venue ) {
 			$venue_name = $venue->name();
@@ -105,6 +107,7 @@ if ( have_posts() ) :
 			<td id="event_title-<?php echo $post->ID; ?>" class="event_title"><?php echo $post->post_title ?></td>
 			<td id="venue_title-<?php echo $post->ID; ?>" class="venue_title"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
 			<td id="start_date-<?php echo $post->ID; ?>" class="start_date"><?php echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)) ?></td>
+			<td id="event_description-<?php echo $post->ID; ?>" class="event_title"><?php echo $post->post_excerpt; ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php
