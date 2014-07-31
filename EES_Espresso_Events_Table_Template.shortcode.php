@@ -133,7 +133,6 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 				'table_paging'			=> NULL,
 				'table_pages'			=> 10,
 				'table_striping'		=> NULL,
-				'table_filter'			=> NULL,
 				'table_search'			=> NULL,
 				
 			),
@@ -172,7 +171,7 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 			}
 
 			//FooTable Filter
-			if ( $attributes['table_filter'] != 'false' ){
+			if ( $attributes['table_search'] != 'false' ){
 				wp_register_script( 'footable-filter', EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.filter.js', array( 'jquery' ), EE_EVENTS_TABLE_TEMPLATE_VERSION, TRUE );
 				wp_enqueue_script( 'footable-filter' );
 			}
