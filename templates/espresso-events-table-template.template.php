@@ -26,7 +26,7 @@ if ( have_posts() ) :
 	</p>
 	<?php } ?>
 	
-	<?php if ($table_search != 'false'){ ?>
+	<?php if ($footable != 'false' && $table_search != 'false'){ ?>
 	<p>
         <?php echo __('Search:', 'event_espresso'); ?> <input id="filter" type="text"/>
     </p>
@@ -41,7 +41,7 @@ if ( have_posts() ) :
 			<th class="th-group" data-sort-ignore="true"></th>
 		</tr>
 	</thead>
-	<?php if ($table_paging != 'false'){ ?>
+	<?php if ($footable != 'false' && $table_paging != 'false'){ ?>
 	<tfoot>
 		<tr>
 			<td colspan="4">
@@ -86,6 +86,7 @@ if ( have_posts() ) :
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
 		
 		//Get the venue for this event
+		EE_Registry::instance()->load_helper('Venue_View');
 		$venues = espresso_event_venues();
 		$venue = array_shift( $venues );
 		
