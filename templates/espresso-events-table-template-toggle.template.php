@@ -104,10 +104,10 @@ if ( have_posts() ) :
 		}
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
-			<td id="event_title-<?php echo $post->ID; ?>" class="event_title"><?php echo $post->post_title ?></td>
-			<td id="venue_title-<?php echo $post->ID; ?>" class="venue_title"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
-			<td id="start_date-<?php echo $post->ID; ?>" class="start_date"><?php echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)) ?></td>
-			<td id="event_description-<?php echo $post->ID; ?>" class="event_title"><?php echo $post->post_excerpt; ?></td>
+			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title ?></td>
+			<td class="venue_title event-<?php echo $post->ID; ?>"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>"><?php echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)) ?></td>
+			<td class="event_content event-<?php echo $post->ID; ?>"><?php echo $post->post_excerpt; ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php

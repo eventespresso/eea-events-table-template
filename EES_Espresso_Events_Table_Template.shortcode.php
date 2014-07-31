@@ -119,22 +119,22 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 		$attributes = array_merge(
 			// defaults
 			array(
-				'template_file'		=> 'espresso-events-table-template.template.php',
-				'limit' 			=> 10,
-				'show_expired' 		=> FALSE,
-				'month' 			=> NULL,
-				'category_slug' 	=> NULL,
-				'category_filter' 	=> NULL,
-				'order_by' 			=> 'start_date',
-				'sort'				=> 'ASC',
-				'footable'			=> NULL,
-				'table_style'		=> 'standalone',
-				'table_sort'		=> NULL,
-				'table_paging'		=> NULL,
-				'table_pages'		=> 10,
-				'table_striping'	=> NULL,
-				'table_filter'		=> NULL,
-				'table_search'		=> NULL,
+				'template_file'			=> 'espresso-events-table-template.template.php', //Default template file
+				'limit' 				=> 10,
+				'show_expired' 			=> FALSE,
+				'month' 				=> NULL,
+				'category_slug' 		=> NULL,
+				'category_filter' 		=> NULL,
+				'order_by' 				=> 'start_date',
+				'sort'					=> 'ASC',
+				'footable'				=> NULL,
+				'table_style'			=> 'standalone',
+				'table_sort'			=> NULL,
+				'table_paging'			=> NULL,
+				'table_pages'			=> 10,
+				'table_striping'		=> NULL,
+				'table_filter'			=> NULL,
+				'table_search'			=> NULL,
 				
 			),
 			(array)$attributes
