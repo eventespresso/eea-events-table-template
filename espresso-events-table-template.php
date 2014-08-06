@@ -2,7 +2,7 @@
 /*
   Plugin Name: Event Espresso - Events Table Template
   Plugin URI: http://www.eventespresso.com
-  Description: The Event Espresso Events Table Template adds a events table view to Event Espresso 4
+  Description: The Event Espresso Events Table Template adds a events table view to Event Espresso 4. Add [ESPRESSO_EVENTS_TABLE_TEMPLATE] to any WordPress page/post.
   Shortcode Example: [ESPRESSO_EVENTS_TABLE_TEMPLATE]
   Shortcode Parameters: footable = false (disables FooTable), table_search = false (turn off search), table_style = standalone (alternate styles: metro), table_sort = false (disables FooTable sorting), table_striping = false (turn off striping), table_paging = false (hide paging), table_pages = 10, limit = 10, show_expired = FALSE, month = NULL, category_slug = NULL, category_filter = false, order_by = start_date, sort = ASC, template_file = espresso-events-table-template-toggle.template.php (creates a table with two colums and a toggle to expand the row) (users can upload custom templates to wp-content/uploads/espresso/templates/)
   Version: 0.0.1.dev.001
