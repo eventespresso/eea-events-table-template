@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Event Espresso - Events Table View Template (EE4+)
+  Plugin Name: Event Espresso - Events Table View Template (EE4.3+)
   Plugin URI: http://www.eventespresso.com
   Description: The Event Espresso Events Table Template adds a events table view to Event Espresso 4. Add [ESPRESSO_EVENTS_TABLE_TEMPLATE] to any WordPress page/post.
   Shortcode Example: [ESPRESSO_EVENTS_TABLE_TEMPLATE]
