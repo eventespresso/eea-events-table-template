@@ -42,7 +42,7 @@ Class  EE_Events_Table_Template extends EE_Addon {
 				'shortcode_paths' 	=> array( EE_EVENTS_TABLE_TEMPLATE_PATH . 'EES_Espresso_Events_Table_Template.shortcode.php' ),
 				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
-					'pue_plugin_slug' => 'espresso_events_table_template',
+					'pue_plugin_slug' => 'eea-events-table-view-template',
 					'plugin_basename' => EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE,
 					'checkPeriod' => '24',
 					'use_wp_update' => FALSE
