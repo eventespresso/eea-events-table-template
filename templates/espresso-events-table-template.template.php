@@ -1,4 +1,7 @@
 <?php
+// Options
+$date_option		= get_option( 'date_format' );
+$time_option		= get_option( 'time_format' );
 //Defaults
 $button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
 $alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
@@ -105,7 +108,7 @@ if ( have_posts() ) :
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>"><?php echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)) ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>"><?php espresso_event_date($date_option, $time_option) ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php
