@@ -108,7 +108,7 @@ if ( have_posts() ) :
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>"><?php espresso_event_date($date_option, $time_option) ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime($post->DTT_EVT_start); ?>"><?php espresso_event_date($date_option, $time_option) ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php
