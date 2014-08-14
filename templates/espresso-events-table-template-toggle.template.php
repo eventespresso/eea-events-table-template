@@ -2,6 +2,8 @@
 // Options
 $date_option		= get_option( 'date_format' );
 $time_option		= get_option( 'time_format' );
+// Load Venue View Helper
+EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
 $button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
 $alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
