@@ -40,7 +40,7 @@
  */
 // events_table_template version
 define( 'EE_EVENTS_TABLE_TEMPLATE_VERSION', '1.2.p' );
-define( 'EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE',  __FILE__ );
+define( 'EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE',  plugin_basename( __FILE__ ) );
 
 function load_espresso_events_table_template() {
 	if ( class_exists( 'EE_Addon' )) {
