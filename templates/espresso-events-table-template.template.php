@@ -2,6 +2,8 @@
 // Options
 $date_option		= get_option( 'date_format' );
 $time_option		= get_option( 'time_format' );
+// Load Venue View Helper
+EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
 $button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
 $alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
@@ -87,28 +89,12 @@ if ( have_posts() ) :
 		
 		//Create the register now button
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
-		
-		//Get the venue for this event
-		EE_Registry::instance()->load_helper('Venue_View');
-		$venues = espresso_event_venues();
-		$venue = array_shift( $venues );
-		
-		//Debug
-		//d( $venue );
 
-		if ( $venue instanceof EE_Venue ) {
-			$venue_name = $venue->name();
-			$venue_address = $venue->address();
-			$venue_city = $venue->city();
-			if ($venue->state_obj() instanceof EE_State ) {
-				$state = $venue->state_obj()->name();
-			}
-		}
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
-			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title ?></td>
-			<td class="venue_title event-<?php echo $post->ID; ?>"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime($post->DTT_EVT_start); ?>"><?php espresso_event_date($date_option, $time_option) ?></td>
+			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
+			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime($post->DTT_EVT_start); ?>"><?php espresso_event_date( $date_option, $time_option ); ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php
