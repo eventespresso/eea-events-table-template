@@ -120,7 +120,7 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 			// defaults
 			array(
 				'template_file'			=> 'espresso-events-table-template.template.php', //Default template file
-				'limit' 				=> 10,
+				'limit' 				=> 1000,
 				'show_expired' 			=> FALSE,
 				'month' 				=> NULL,
 				'category_slug' 		=> NULL,
