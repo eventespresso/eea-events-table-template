@@ -16,6 +16,7 @@ jQuery(document).ready(function($){
 		}
 	});
 
-
-	$('.footable').footable();
+	if ( $.isFunction($.fn.footable) ) {
+		$('.footable').footable();
+	}
 });
