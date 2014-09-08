@@ -5,8 +5,9 @@ $time_option		= get_option( 'time_format' );
 // Load Venue View Helper
 EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
-$button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
-$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+$button_text			= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
+$alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+$sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For alternate registration pages
 
 if ( have_posts() ) :
 	// allow other stuff
@@ -91,6 +92,10 @@ if ( have_posts() ) :
 		//Create the register now button
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
 
+		if ( $event->is_sold_out() || $event->is_sold_out(TRUE ) ) {
+			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
+		}
+		
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
