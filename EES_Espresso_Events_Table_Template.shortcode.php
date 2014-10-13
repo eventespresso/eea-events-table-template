@@ -306,7 +306,7 @@ class EE_Events_Table_Template_Query extends WP_Query {
 		// first off, let's remove any filters from previous queries
 		remove_filter( 'posts_where', array( $this, 'posts_where' ));
 		// Show Expired ?
-		$this->_show_expired = $this->_show_expired ? TRUE : FALSE;
+		$this->_show_expired = filter_var($this->_show_expired, FILTER_VALIDATE_BOOLEAN);
 
 			EE_Registry::instance()->load_helper( 'Event_Query' );
 			$SQL .= EEH_Event_Query::posts_where_sql_for_show_expired( $this->_show_expired );
