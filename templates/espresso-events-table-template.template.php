@@ -4,7 +4,7 @@ EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
 $button_text			= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
 $alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
-$sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For alternate registration pages
+$sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For sold out events
 
 if ( have_posts() ) :
 	// allow other stuff
