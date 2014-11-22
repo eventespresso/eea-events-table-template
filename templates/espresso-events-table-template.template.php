@@ -92,12 +92,9 @@ if ( have_posts() ) :
 			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 		
-		if ( $show_expired != TRUE ) { 
-			//Get the first datetime that's not expired
-			$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, false, false, 1 );
-		} else {
-			$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, true, false, 1 );
-		}
+
+		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
+		
 		foreach ( $datetimes as $datetime ) {
 			$startdat = $datetime->start_date_and_time();
 		}
