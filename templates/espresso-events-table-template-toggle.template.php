@@ -1,12 +1,10 @@
 <?php
-// Options
-$date_option		= get_option( 'date_format' );
-$time_option		= get_option( 'time_format' );
 // Load Venue View Helper
 EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
-$button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
-$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+$button_text			= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
+$alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+$sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For sold out events
 
 if ( have_posts() ) :
 	// allow other stuff
@@ -91,11 +89,21 @@ if ( have_posts() ) :
 		//Create the register now button
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
 
+		if ( $event->is_sold_out() || $event->is_sold_out(TRUE ) ) {
+			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
+		}
+
+		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
+		
+		foreach ( $datetimes as $datetime ) {
+			$startdat = $datetime->start_date_and_time();
+		}
+		
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime($post->DTT_EVT_start); ?>"><?php espresso_event_date( $date_option, $time_option ); ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime( $startdat ); ?>"><?php echo $startdat; ?></td>
 			<td class="event_content event-<?php echo $post->ID; ?>"><?php espresso_event_content_or_excerpt(); ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>

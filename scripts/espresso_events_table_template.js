@@ -1,9 +1,9 @@
 jQuery(document).ready(function($){
 
 	$("#ee_filter_cat").change(function() {
-		var ee_filter_cat_id = $("option:selected").attr('class');
+		var ee_filter_cat_id = $(this).find("option:selected").attr('class');
 		var ee_filter_table_rows = $(".espresso-table-row");
-		console.log(ee_filter_cat_id);
+		// console.log(ee_filter_cat_id);
 		ee_filter_table_rows.each(function() {
 			if ( $(this).hasClass( ee_filter_cat_id ) ) {
 				$(this).show();
@@ -16,6 +16,7 @@ jQuery(document).ready(function($){
 		}
 	});
 
-
-	$('.footable').footable();
+	if ( $.isFunction($.fn.footable) ) {
+		$('.footable').footable();
+	}
 });
