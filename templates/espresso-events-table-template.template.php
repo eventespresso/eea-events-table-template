@@ -2,7 +2,7 @@
 // Load Venue View Helper
 EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
-$button_text			= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
+$reg_button_text		= !isset($reg_button_text) ? __('Register', 'event_espresso') : $reg_button_text;
 $alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 $sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For sold out events
 
@@ -82,7 +82,7 @@ if ( have_posts() ) :
 		}
 		//Create the event link
 		$external_url 		= $post->EE_Event->external_url();
-		$button_text		= !empty($external_url) ? $alt_button_text : $button_text;
+		$button_text		= !empty($external_url) ? $alt_button_text : $reg_button_text;
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 		
 		//Create the register now button
