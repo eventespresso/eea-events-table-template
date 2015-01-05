@@ -268,6 +268,8 @@ class EE_Events_Table_Template_Query extends WP_Query {
 		add_filter( 'posts_join', array( $this, 'posts_join' ), 10, 1 );
 		add_filter( 'posts_where', array( $this, 'posts_where' ), 10, 1 );
 		add_filter( 'posts_orderby', array( $this, 'posts_orderby' ), 10, 1 );
+		EE_Registry::instance()->load_helper( 'Event_Query' );
+		add_filter( 'posts_clauses_request', array( 'EEH_Event_Query', 'posts_clauses' ), 10, 2 );
 
 		// run the query
 		parent::__construct( $args );

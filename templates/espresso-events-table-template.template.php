@@ -1,8 +1,11 @@
 <?php
+// Options
+$date_format		= get_option( 'date_format' );
+$time_format		= get_option( 'time_format' );
 // Load Venue View Helper
 EE_Registry::instance()->load_helper('Venue_View');
 //Defaults
-$button_text			= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
+$reg_button_text		= !isset($reg_button_text) ? __('Register', 'event_espresso') : $reg_button_text;
 $alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 $sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For sold out events
 
@@ -82,7 +85,7 @@ if ( have_posts() ) :
 		}
 		//Create the event link
 		$external_url 		= $post->EE_Event->external_url();
-		$button_text		= !empty($external_url) ? $alt_button_text : $button_text;
+		$button_text		= !empty($external_url) ? $alt_button_text : $reg_button_text;
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 		
 		//Create the register now button
@@ -103,7 +106,7 @@ if ( have_posts() ) :
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime( $startdat ); ?>"><?php echo $startdat; ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime( $startdat ); ?>"><?php echo date_i18n( $date_format . ' ' . $time_format, strtotime( $startdat ) ); ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php
