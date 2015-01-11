@@ -1,0 +1,16 @@
+{
+	"versionFile" : "espresso-events-table-template.php",
+	"slug" : "eea-events-table-view-template",
+	"name" : "EE4 Events Table Template",
+	"archiveBaseUrl" : "http://build.eventespresso.com/",
+	"archiveBasePath" : "~/www/build/",
+	"releaseFilesRemove" : [
+		"src/tests/**",
+		"src/info.json",
+		"src/circle.yml",
+		"src/readme.txt"
+	],
+	"github" : true,
+	"awsbucket" : "",
+	"awsregion" : ""
+}
