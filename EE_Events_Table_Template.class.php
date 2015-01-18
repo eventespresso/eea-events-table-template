@@ -1,20 +1,17 @@
 <?php if ( ! defined( 'EVENT_ESPRESSO_VERSION' )) { exit(); }
+// define the plugin directory path and URL
+define( 'EE_EVENTS_TABLE_TEMPLATE_PATH', plugin_dir_path( __FILE__ ));
+define( 'EE_EVENTS_TABLE_TEMPLATE_URL', plugin_dir_url( __FILE__ ));
+define( 'EE_EVENTS_TABLE_TEMPLATE_TEMPLATES', EE_EVENTS_TABLE_TEMPLATE_PATH . DS . 'templates' );
 /**
- * ------------------------------------------------------------------------
  *
  * Class  EE_Events_Table_Template
  *
  * @package			Event Espresso
  * @subpackage		espresso-events-table-template
- * @author			    Brent Christensen
+ * @author			    Seth Shoultes
  * @ version		 	$VID:$
- *
- * ------------------------------------------------------------------------
  */
-// define the plugin directory path and URL
-		define( 'EE_EVENTS_TABLE_TEMPLATE_PATH', plugin_dir_path( __FILE__ ));
-		define( 'EE_EVENTS_TABLE_TEMPLATE_URL', plugin_dir_url( __FILE__ ));
-		define( 'EE_EVENTS_TABLE_TEMPLATE_TEMPLATES', EE_EVENTS_TABLE_TEMPLATE_PATH . DS . 'templates' );
 Class  EE_Events_Table_Template extends EE_Addon {
 
 	/**
@@ -26,26 +23,26 @@ Class  EE_Events_Table_Template extends EE_Addon {
 	}
 
 	public static function register_addon() {
-		
+
 		// register addon via Plugin API
 		EE_Register_Addon::register(
 			'Events_Table_Template',
 			array(
 				'version' 					=> EE_EVENTS_TABLE_TEMPLATE_VERSION,
-				'min_core_version' 			=> '4.4.0',
+				'min_core_version' => '4.4.0',
 				'base_path' 				=> EE_EVENTS_TABLE_TEMPLATE_PATH,
-				'main_file_path' 			=> EE_EVENTS_TABLE_TEMPLATE_PATH . 'espresso-events-table-template.php',
-				//'admin_callback'		=> 'additional_admin_hooks',
-				'autoloader_paths' 			=> array(
+				'main_file_path' 		=> EE_EVENTS_TABLE_TEMPLATE_PATH . 'espresso-events-table-template.php',
+				//'admin_callback'	=> 'additional_admin_hooks',
+				'autoloader_paths' => array(
 					'EE_Events_Table_Template' 	=> EE_EVENTS_TABLE_TEMPLATE_PATH . 'EE_Events_Table_Template.class.php',
 				),
 				'shortcode_paths' 	=> array( EE_EVENTS_TABLE_TEMPLATE_PATH . 'EES_Espresso_Events_Table_Template.shortcode.php' ),
 				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
-					'pue_plugin_slug' => 'eea-events-table-view-template',
-					'plugin_basename' => EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE,
-					'checkPeriod' => '24',
-					'use_wp_update' => FALSE
+					'pue_plugin_slug' 		=> 'eea-events-table-view-template',
+					'plugin_basename' 	=> EE_EVENTS_TABLE_TEMPLATE_PLUGIN_FILE,
+					'checkPeriod' 				=> '24',
+					'use_wp_update' 		=> FALSE
 				)
 			)
 		);
