@@ -16,7 +16,7 @@ if ( have_posts() ) :
 
 	<?php if ($category_filter != 'false'){ ?>
 	<p class="category-filter">
-		<label><?php echo __('Category Filter:', 'event_espresso'); ?></label> 
+		<label><?php echo __('Category Filter:', 'event_espresso'); ?></label>
 		<select class="" id="ee_filter_cat">
 		<option class="ee_filter_show_all"><?php echo __('Show All', 'event_espresso'); ?></option>
 		<?php
@@ -31,7 +31,7 @@ if ( have_posts() ) :
 		</select>
 	</p>
 	<?php } ?>
-	
+
 	<?php if ($footable != 'false' && $table_search != 'false'){ ?>
 	<p>
         <?php echo __('Search:', 'event_espresso'); ?> <input id="filter" type="text"/>
@@ -67,7 +67,7 @@ if ( have_posts() ) :
 
 		//Debug
 		//d( $post );
-		
+
 		//Get the category for this event
 		$event = EEH_Event_View::get_event();
 		if ( $event instanceof EE_Event ) {
@@ -88,7 +88,7 @@ if ( have_posts() ) :
 		$external_url 		= $post->EE_Event->external_url();
 		$button_text		= !empty($external_url) ? $alt_button_text : $reg_button_text;
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
-		
+
 		//Create the register now button
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
 
@@ -97,16 +97,15 @@ if ( have_posts() ) :
 		}
 
 		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
-		
-		foreach ( $datetimes as $datetime ) {
-			$startdat = $datetime->start_date_and_time();
-		}
-		
+
+		$datetime = end( $datetimes );
+		$startdat = $datetime->get_i18n_datetime( 'DTT_EVT_start', $date_format . ' ' . $time_format );
+
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo strtotime( $startdat ); ?>"><?php echo date_i18n( $date_format . ' ' . $time_format, strtotime( $startdat ) ); ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_strtotime( 'DTT_EVT_start' ); ?>"><?php echo $startdat; ?></td>
 			<td class="event_content event-<?php echo $post->ID; ?>"><?php espresso_event_content_or_excerpt(); ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
