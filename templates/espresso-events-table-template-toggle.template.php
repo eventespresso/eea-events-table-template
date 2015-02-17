@@ -99,13 +99,13 @@ if ( have_posts() ) :
 		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
 
 		$datetime = end( $datetimes );
-		$startdat = $datetime->get_i18n_datetime( 'DTT_EVT_start', $date_format . ' ' . $time_format );
+		$startdate = $datetime->get_i18n_datetime( 'DTT_EVT_start', $date_format . ' ' . $time_format );
 
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_strtotime( 'DTT_EVT_start' ); ?>"><?php echo $startdat; ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_strtotime( 'DTT_EVT_start' ); ?>"><?php echo $startdate; ?></td>
 			<td class="event_content event-<?php echo $post->ID; ?>"><?php espresso_event_content_or_excerpt(); ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
