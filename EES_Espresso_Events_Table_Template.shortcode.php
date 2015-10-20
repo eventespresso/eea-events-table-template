@@ -98,6 +98,14 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 	 * @return 	string
 	 */
 	public function process_shortcode( $attributes = array() ) {
+		
+		//if 'table_paging'=false set table_pages to a large number than 10 by default if a value has not be set already
+		if( isset( $attributes['table_paging']) && !filter_var($attributes['table_paging'], FILTER_VALIDATE_BOOLEAN) ) {
+			if( !isset( $attributes['table_pages'] ) ) {
+				$attributes['table_pages'] = 100;
+			}
+		}
+
 		// make sure $attributes is an array
 		$attributes = array_merge(
 			// defaults
