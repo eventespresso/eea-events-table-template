@@ -102,7 +102,7 @@ if ( have_posts() ) :
 		// Pull the datetimes for this event order by start_date/time
 		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, $datetime_limit );
 
-		// Reset the datetime point to start from earlest to lestest.
+		// Reset the datetimes pointer to the earlest datetime and use that one.
 		$datetime = reset( $datetimes );
 
 		?>
