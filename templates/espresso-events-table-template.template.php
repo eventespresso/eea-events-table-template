@@ -8,6 +8,7 @@ EE_Registry::instance()->load_helper('Venue_View');
 $reg_button_text		= !isset($reg_button_text) ? __('Register', 'event_espresso') : $reg_button_text;
 $alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 $sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For sold out events
+$category_filter_text	= !isset($category_filter_text) ? __('Category Filter', 'event_espresso') : $category_filter_text;
 
 if ( have_posts() ) :
 	// allow other stuff
@@ -16,7 +17,7 @@ if ( have_posts() ) :
 
 	<?php if ($category_filter != 'false'){ ?>
 	<p class="category-filter">
-		<label><?php echo __('Category Filter', 'event_espresso'); ?></label>
+		<label><?php echo $category_filter_text; ?></label>
 		<select class="" id="ee_filter_cat">
 		<option class="ee_filter_show_all"><?php echo __('Show All', 'event_espresso'); ?></option>
 		<?php

@@ -116,6 +116,7 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 				'month' 				=> NULL,
 				'category_slug' 	=> NULL,
 				'category_filter' 	=> NULL,
+				'category_filter_text' 	=> NULL,
 				'order_by' 			=> 'start_date',
 				'sort'					=> 'ASC',
 				'footable'				=> NULL,
