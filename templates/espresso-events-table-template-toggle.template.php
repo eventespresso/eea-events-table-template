@@ -96,12 +96,15 @@ if ( have_posts() ) :
 			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 
-		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
+		// If the show_all_datetimes parameter is set set the limit to NULL to pull them all,
+		// if not default to only dipslay a single datetime.
+		$datetime_limit = $show_all_datetimes ? NULL : 1;
 
-		$datetime = end( $datetimes );
+		// Pull the datetimes for this event order by start_date/time
+		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, $datetime_limit );
 
-		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
-
+		// Reset the datetimes pointer to the earlest datetime and use that one.
+		$datetime = reset( $datetimes );
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
