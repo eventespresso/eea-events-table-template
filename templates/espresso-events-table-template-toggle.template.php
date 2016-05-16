@@ -110,18 +110,19 @@ if ( have_posts() ) :
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
 			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>">
-			<?php 
-				// Loop over each datetime we have pulled from the database and output
-				foreach ($datetimes as $datetime) { 
-				?>
-					<span class="datetime-id-<?php echo $datetime->ID(); ?>">
-						<?php echo date_i18n(  $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) ); ?>
-					</span>
-					<br />
-			<?php 
-				//end foreach $datetimes
-				} 
-			?>
+				<ul class="ee-table-view-datetime-list">
+					<?php
+						// Loop over each datetime we have pulled from the database and output
+						foreach ($datetimes as $datetime) { 
+						?>
+							<li class="datetime-id-<?php echo $datetime->ID(); ?>">
+								<?php echo date_i18n(  $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) ); ?>
+							</li>
+					<?php 
+						//end foreach $datetimes
+						} 
+					?>
+				</ul>
 			<td class="event_content event-<?php echo $post->ID; ?>"><?php espresso_event_content_or_excerpt(); ?></td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
