@@ -96,21 +96,35 @@ if ( have_posts() ) :
 			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 
+		// If the show_all_datetimes parameter is set set the limit to NULL to pull them all,
+		// if not default to only dipslay a single datetime.
+		$datetime_limit = $show_all_datetimes ? NULL : 1;
 
-		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
+		// Pull the datetimes for this event order by start_date/time
+		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, $datetime_limit );
 
-		$datetime = end( $datetimes );
-
-		//let's use date_i18n on the correct offset for the timestamp.  Note it seems like we're doing a lot of
-		//unnecessary conversion but this is so it works with two different pardigmas in the EE core datetime
-		//system, without users having to worry about updating.
-		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
+		// Reset the datetimes pointer to the earlest datetime and use that one.
+		$datetime = reset( $datetimes );
 
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>"><?php echo $startdate; ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>">
+				<ul class="ee-table-view-datetime-list">
+					<?php
+						// Loop over each datetime we have pulled from the database and output
+						foreach ($datetimes as $datetime) { 
+						?>
+							<li class="datetime-id-<?php echo $datetime->ID(); ?>">
+								<?php echo date_i18n(  $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) ); ?>
+							</li>
+					<?php 
+						//end foreach $datetimes
+						} 
+					?>
+				</ul>
+			</td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php

@@ -112,20 +112,21 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 			array(
 				'template_file'		=> 'espresso-events-table-template.template.php', //Default template file
 				'limit' 					=> 1000,
-				'show_expired' 	=> FALSE,
-				'month' 				=> NULL,
-				'category_slug' 	=> NULL,
-				'category_filter' 	=> NULL,
-				'category_filter_text' 	=> NULL,
-				'order_by' 			=> 'start_date',
-				'sort'					=> 'ASC',
-				'footable'				=> NULL,
-				'table_style'			=> 'standalone',
-				'table_sort'			=> NULL,
-				'table_paging'		=> NULL,
-				'table_pages'		=> 10,
-				'table_striping'	=> NULL,
-				'table_search'		=> NULL
+				'show_expired' 				=> FALSE,
+				'month' 					=> NULL,
+				'category_slug' 			=> NULL,
+				'category_filter' 			=> NULL,
+				'category_filter_text' 		=> NULL,
+				'order_by' 					=> 'start_date',
+				'sort'						=> 'ASC',
+				'footable'					=> NULL,
+				'table_style'				=> 'standalone',
+				'table_sort'				=> NULL,
+				'table_paging'				=> NULL,
+				'table_pages'				=> 10,
+				'table_striping'			=> NULL,
+				'table_search'				=> NULL,
+				'show_all_datetimes' 		=> FALSE
 			),
 			(array)$attributes
 		);
