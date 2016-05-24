@@ -90,10 +90,10 @@ if ( have_posts() ) :
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 
 		//Create the register now button
-		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
+		$live_button 		= '<a id="a_register_link-'.$post->ID.'" class="a_register_link" href="'.$registration_url.'">'.$button_text.'</a>';
 
 		if ( $event->is_sold_out() || $event->is_sold_out(TRUE ) ) {
-			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
+			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out a_register_link" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 
 		// If the show_all_datetimes parameter is set set the limit to NULL to pull them all,
