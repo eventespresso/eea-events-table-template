@@ -110,7 +110,7 @@ class EES_Espresso_Events_Table_Template  extends EES_Shortcode {
 		$attributes = array_merge(
 			// defaults
 			array(
-				'template_file'		=> 'espresso-events-table-template.template.php', //Default template file
+				'template_file'				=> 'espresso-events-table-template.template.php', //Default template file
 				'limit' 					=> 1000,
 				'show_expired' 				=> FALSE,
 				'month' 					=> NULL,
