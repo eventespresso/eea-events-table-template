@@ -7,9 +7,13 @@
 General Styles
 ---------------------------------------------------------------------------------------------------- */
 
-.ee-table-view-datetime-list {
+#ee_filter_table ul,
+#ee_filter_table ul > li,
+.ee-table-view-datetime-list,
+.ee-table-view-datetime-list li {
     list-style: none;
-    margin: 0 0 10px;
+    margin: 0;
+    padding: 0;
 }
 
 
