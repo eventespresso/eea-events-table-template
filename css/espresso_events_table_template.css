@@ -16,6 +16,13 @@ General Styles
     padding: 0;
 }
 
+#ee_filter_table ul > li:before,
+.ee-table-view-datetime-list li:before {
+    content: '';
+    content: none;
+    margin: 0;
+}
+
 
 /* Media Query for screens smaller then 768px (iPad portrait)
 ---------------------------------------------------------------------------------------------------- */
