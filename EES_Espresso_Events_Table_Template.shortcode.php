@@ -148,7 +148,10 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
             ),
             (array)$attributes
         );
-        $attributes = \EES_Shortcode::sanitize_attributes($attributes);
+        $attributes = \EES_Shortcode::sanitize_attributes(
+            $attributes,
+            array('category_slug' => 'sanitize_title_with_dashes')
+        );
         if ($attributes['footable'] !== false) {
             //FooTable Styles
             wp_register_style(
