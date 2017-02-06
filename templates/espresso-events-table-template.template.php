@@ -97,16 +97,16 @@ if ( have_posts() ) :
 		}
 
 		// If the show_all_datetimes parameter is set set the limit to NULL to pull them all,
-		// if not default to only dipslay a single datetime.
+		// if not default to only display a single datetime.
 		$datetime_limit = $show_all_datetimes ? NULL : 1;
 
 		// Pull the datetimes for this event order by start_date/time
 		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, $datetime_limit );
 
-		// Reset the datetimes pointer to the earlest datetime and use that one.
+		// Reset the datetimes pointer to the earliest datetime and use that one.
 		$datetime = reset( $datetimes );
-
-		?>
+        if ($datetime instanceof EE_Datetime) {
+        ?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
@@ -114,23 +114,22 @@ if ( have_posts() ) :
 				<ul class="ee-table-view-datetime-list">
 					<?php
 						// Loop over each datetime we have pulled from the database and output
-						foreach ($datetimes as $datetime) { 
+						foreach ($datetimes as $datetime) {
 						?>
 							<li class="datetime-id-<?php echo $datetime->ID(); ?>">
 								<?php echo date_i18n(  $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) ); ?>
 							</li>
-					<?php 
+					<?php
 						//end foreach $datetimes
-						} 
+						}
 					?>
 				</ul>
 			</td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php
-
-
-	endwhile;
+        }
+    endwhile;
 	echo '</table>';
 	// allow moar other stuff
 	do_action( 'AHEE__espresso_events_table_template_template__after_loop' );
