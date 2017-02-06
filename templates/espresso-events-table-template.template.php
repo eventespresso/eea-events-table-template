@@ -8,6 +8,7 @@ EE_Registry::instance()->load_helper('Venue_View');
 $reg_button_text		= !isset($reg_button_text) ? __('Register', 'event_espresso') : $reg_button_text;
 $alt_button_text		= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 $sold_out_button_text	= !isset($sold_out_button_text) ? __('Sold Out', 'event_espresso') : $sold_out_button_text;//For sold out events
+$category_filter_text	= !isset($category_filter_text) ? __('Category Filter', 'event_espresso') : $category_filter_text;
 
 if ( have_posts() ) :
 	// allow other stuff
@@ -16,7 +17,7 @@ if ( have_posts() ) :
 
 	<?php if ($category_filter != 'false'){ ?>
 	<p class="category-filter">
-		<label><?php echo __('Category Filter', 'event_espresso'); ?></label>
+		<label><?php echo $category_filter_text; ?></label>
 		<select class="" id="ee_filter_cat">
 		<option class="ee_filter_show_all"><?php echo __('Show All', 'event_espresso'); ?></option>
 		<?php
@@ -89,27 +90,41 @@ if ( have_posts() ) :
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 
 		//Create the register now button
-		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
+		$live_button 		= '<a id="a_register_link-'.$post->ID.'" class="a_register_link" href="'.$registration_url.'">'.$button_text.'</a>';
 
 		if ( $event->is_sold_out() || $event->is_sold_out(TRUE ) ) {
-			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
+			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out a_register_link" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 
+		// If the show_all_datetimes parameter is set set the limit to NULL to pull them all,
+		// if not default to only dipslay a single datetime.
+		$datetime_limit = $show_all_datetimes ? NULL : 1;
 
-		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
+		// Pull the datetimes for this event order by start_date/time
+		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, $datetime_limit );
 
-		$datetime = end( $datetimes );
-
-		//let's use date_i18n on the correct offset for the timestamp.  Note it seems like we're doing a lot of
-		//unnecessary conversion but this is so it works with two different pardigmas in the EE core datetime
-		//system, without users having to worry about updating.
-		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
+		// Reset the datetimes pointer to the earlest datetime and use that one.
+		$datetime = reset( $datetimes );
 
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
 			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
-			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>"><?php echo $startdate; ?></td>
+			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>">
+				<ul class="ee-table-view-datetime-list">
+					<?php
+						// Loop over each datetime we have pulled from the database and output
+						foreach ($datetimes as $datetime) { 
+						?>
+							<li class="datetime-id-<?php echo $datetime->ID(); ?>">
+								<?php echo date_i18n(  $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) ); ?>
+							</li>
+					<?php 
+						//end foreach $datetimes
+						} 
+					?>
+				</ul>
+			</td>
 			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
 		</tr>
 		<?php

@@ -121,30 +121,34 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
         // if 'table_paging'=false set table_pages to a large number
         // than 10 by default if a value has not be set already
         if (
-            isset($attributes['table_paging'], $attributes['table_pages'])
+            isset($attributes['table_paging'])
             && ! filter_var($attributes['table_paging'], FILTER_VALIDATE_BOOLEAN)
         ) {
-            $attributes['table_pages'] = 100;
+            if ( ! isset($attributes['table_pages'])) {
+                $attributes['table_pages'] = 100;
+            }
         }
         // make sure $attributes is an array
         $attributes = array_merge(
         // defaults
             array(
-                'template_file'   => 'espresso-events-table-template.template.php', //Default template file
-                'limit'           => 1000,
-                'show_expired'    => false,
-                'month'           => null,
-                'category_slug'   => null,
-                'category_filter' => null,
-                'order_by'        => 'start_date',
-                'sort'            => 'ASC',
-                'footable'        => null,
-                'table_style'     => 'standalone',
-                'table_sort'      => null,
-                'table_paging'    => null,
-                'table_pages'     => 10,
-                'table_striping'  => null,
-                'table_search'    => null
+                'template_file'        => 'espresso-events-table-template.template.php', //Default template file
+                'limit'                => 1000,
+                'show_expired'         => false,
+                'month'                => null,
+                'category_slug'        => null,
+                'category_filter'      => null,
+                'category_filter_text' => null,
+                'order_by'             => 'start_date',
+                'sort'                 => 'ASC',
+                'footable'             => null,
+                'table_style'          => 'standalone',
+                'table_sort'           => null,
+                'table_paging'         => null,
+                'table_pages'          => 10,
+                'table_striping'       => null,
+                'table_search'         => null,
+                'show_all_datetimes'   => false,
             ),
             (array)$attributes
         );
@@ -231,7 +235,6 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
         // run the query
         global $wp_query;
         $wp_query = new EE_Events_Table_Template_Query($attributes);
-        //d( $wp_query );
         // now filter the array of locations to search for templates
         add_filter(
             'FHEE__EEH_Template__locate_template__template_folder_paths',
