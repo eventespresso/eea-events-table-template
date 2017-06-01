@@ -73,7 +73,7 @@ if ( have_posts() ) :
 		if ( $event instanceof EE_Event ) {
 			if ( $event_categories = get_the_terms( $event->ID(), 'espresso_event_categories' )) {
 				// loop thru terms and create links
-				$category_slugs = '';
+				$category_slugs = array();
 				foreach ( $event_categories as $term ) {
 					$category_slugs[] = $term->slug;
 				}
