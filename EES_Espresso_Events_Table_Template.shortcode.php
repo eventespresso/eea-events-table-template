@@ -149,6 +149,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 'table_striping'       => null,
                 'table_search'         => null,
                 'show_all_datetimes'   => false,
+                'hide_venues'          => false,
             ),
             (array)$attributes
         );
