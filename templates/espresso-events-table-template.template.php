@@ -43,7 +43,7 @@ if ( have_posts() ) :
 	<thead class="espresso-table-header-row">
 		<tr>
 			<th class="th-group"><?php _e('Event','event_espresso'); ?></th>
-			<?php if( !$hide_venues ) { ?>
+			<?php if( $show_venues ) { ?>
 				<th class="th-group"><?php _e('Venue','event_espresso'); ?></th>
 			<?php } ?>
 			<th class="th-group"><?php _e('Date','event_espresso'); ?></th>
@@ -111,7 +111,7 @@ if ( have_posts() ) :
         ?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
-			<?php if( !$hide_venues ) { ?>
+			<?php if( $show_venues ) { ?>
 				<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
 			<?php } ?>
 			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>">
