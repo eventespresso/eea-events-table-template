@@ -128,6 +128,10 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 $attributes['table_pages'] = 100;
             }
         }
+        // validate show_venue as a boolean
+        if ( !empty($attributes['show_venues']) ) {
+            $attributes['show_venues'] = filter_var($attributes['show_venues'], FILTER_VALIDATE_BOOLEAN);
+        }
         // make sure $attributes is an array
         $attributes = array_merge(
         // defaults
@@ -149,6 +153,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 'table_striping'       => null,
                 'table_search'         => null,
                 'show_all_datetimes'   => false,
+                'show_venues'          => true,
             ),
             (array)$attributes
         );

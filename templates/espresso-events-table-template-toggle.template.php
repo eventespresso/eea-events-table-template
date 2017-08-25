@@ -42,7 +42,9 @@ if ( have_posts() ) :
 	<thead class="espresso-table-header-row">
 		<tr>
 			<th data-toggle="true" class="th-group"><?php _e('Event','event_espresso'); ?></th>
-			<th data-hide="all" class="th-group"><?php _e('Venue','event_espresso'); ?></th>
+			<?php if( $show_venues ) { ?>
+				<th data-hide="all" class="th-group"><?php _e('Venue','event_espresso'); ?></th>
+			<?php } ?>
 			<th data-hide="all" class="th-group"><?php _e('Date','event_espresso'); ?></th>
 			<th data-hide="all" class="th-group"><?php _e('Description','event_espresso'); ?></th>
 			<th class="th-group" data-sort-ignore="true"></th>
@@ -108,7 +110,9 @@ if ( have_posts() ) :
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
-			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
+			<?php if( $show_venues ) { ?>
+				<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
+			<?php } ?>
 			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>">
 				<ul class="ee-table-view-datetime-list">
 					<?php
