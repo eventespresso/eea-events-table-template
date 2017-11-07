@@ -132,6 +132,10 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
         if ( !empty($attributes['show_venues']) ) {
             $attributes['show_venues'] = filter_var($attributes['show_venues'], FILTER_VALIDATE_BOOLEAN);
         }
+        // validate show_expired as a boolean
+        if ( !empty($attributes['show_expired']) ) {
+            $attributes['show_expired'] = filter_var($attributes['show_expired'], FILTER_VALIDATE_BOOLEAN);
+        }
         // make sure $attributes is an array
         $attributes = array_merge(
         // defaults
