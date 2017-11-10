@@ -53,7 +53,7 @@ if ( have_posts() ) :
 	<?php if ($footable != 'false' && $table_paging != 'false'){ ?>
 	<tfoot>
 		<tr>
-			<td colspan="4">
+		<?php echo '<td colspan="' . ($show_venues ? '4' : '3') . '">'; ?> 
 				<div class="pagination pagination-centered"></div>
 			</td>
 		</tr>
