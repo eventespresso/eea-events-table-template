@@ -2,6 +2,7 @@
 use EventEspresso\core\exceptions\InvalidInterfaceException;
 use EventEspresso\core\services\collections\CollectionInterface;
 use EventEspresso\core\services\loaders\Loader;
+use EventEspresso\core\services\loaders\LoaderFactory;
 use EventEspresso\core\services\loaders\LoaderInterface;
 use EventEspresso\core\services\shortcodes\ShortcodeInterface;
 
@@ -55,7 +56,7 @@ Class  EE_Events_Table_Template extends EE_Addon
     public static function loader()
     {
         if (! EE_Events_Table_Template::$loader instanceof LoaderInterface) {
-            EE_Events_Table_Template::$loader = new Loader;
+            EE_Events_Table_Template::$loader = LoaderFactory::getLoader();
         }
         return EE_Events_Table_Template::$loader;
     }
