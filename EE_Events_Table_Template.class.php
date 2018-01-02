@@ -10,7 +10,7 @@ define( 'EE_EVENTS_TABLE_TEMPLATE_TEMPLATES', EE_EVENTS_TABLE_TEMPLATE_PATH . 't
  * @package			Event Espresso
  * @subpackage		espresso-events-table-template
  * @author			    Seth Shoultes
- * @ version		 	$VID:$
+ *
  */
 Class  EE_Events_Table_Template extends EE_Addon {
 

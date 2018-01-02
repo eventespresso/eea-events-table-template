@@ -10,7 +10,7 @@
  * @package            Event Espresso
  * @subpackage         espresso-events-table-template
  *                     @ author                Seth Shoultes
- *                     @ version            $VID:$
+ *                     
  */
 class EES_Espresso_Events_Table_Template extends EES_Shortcode
 {
