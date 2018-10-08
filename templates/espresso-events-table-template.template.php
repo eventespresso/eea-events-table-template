@@ -94,7 +94,7 @@ if ( have_posts() ) :
 		//Create the register now button
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" class="a_register_link" href="'.$registration_url.'">'.$button_text.'</a>';
 
-		if ( $event->is_sold_out() || $event->is_sold_out(TRUE ) ) {
+		if ( $event->is_sold_out() ) {
 			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out a_register_link" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 
