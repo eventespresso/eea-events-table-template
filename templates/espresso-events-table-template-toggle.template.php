@@ -42,7 +42,9 @@ if ( have_posts() ) :
 	<thead class="espresso-table-header-row">
 		<tr>
 			<th data-toggle="true" class="th-group"><?php _e('Event','event_espresso'); ?></th>
-			<th data-hide="all" class="th-group"><?php _e('Venue','event_espresso'); ?></th>
+			<?php if( $show_venues ) { ?>
+				<th data-hide="all" class="th-group"><?php _e('Venue','event_espresso'); ?></th>
+			<?php } ?>
 			<th data-hide="all" class="th-group"><?php _e('Date','event_espresso'); ?></th>
 			<th data-hide="all" class="th-group"><?php _e('Description','event_espresso'); ?></th>
 			<th class="th-group" data-sort-ignore="true"></th>
@@ -73,7 +75,7 @@ if ( have_posts() ) :
 		if ( $event instanceof EE_Event ) {
 			if ( $event_categories = get_the_terms( $event->ID(), 'espresso_event_categories' )) {
 				// loop thru terms and create links
-				$category_slugs = '';
+				$category_slugs = array();
 				foreach ( $event_categories as $term ) {
 					$category_slugs[] = $term->slug;
 				}
@@ -92,7 +94,7 @@ if ( have_posts() ) :
 		//Create the register now button
 		$live_button 		= '<a id="a_register_link-'.$post->ID.'" class="a_register_link" href="'.$registration_url.'">'.$button_text.'</a>';
 
-		if ( $event->is_sold_out() || $event->is_sold_out(TRUE ) ) {
+		if ( $event->is_sold_out() ) {
 			$live_button	= '<a id="a_register_link-'.$post->ID.'" class="a_register_link_sold_out a_register_link" href="'.$registration_url.'">'.$sold_out_button_text.'</a>';
 		}
 
@@ -108,7 +110,9 @@ if ( have_posts() ) :
 		?>
 		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
 			<td class="event_title event-<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></td>
-			<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
+			<?php if( $show_venues ) { ?>
+				<td class="venue_title event-<?php echo $post->ID; ?>"><?php espresso_venue_name( NULL, FALSE ); ?></td>
+			<?php } ?>
 			<td class="start_date event-<?php echo $post->ID; ?>" data-value="<?php echo $datetime->get_raw( 'DTT_EVT_start' ); ?>">
 				<ul class="ee-table-view-datetime-list">
 					<?php

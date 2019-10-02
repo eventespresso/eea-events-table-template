@@ -10,7 +10,7 @@
  * @package            Event Espresso
  * @subpackage         espresso-events-table-template
  *                     @ author                Seth Shoultes
- *                     @ version            $VID:$
+ *                     
  */
 class EES_Espresso_Events_Table_Template extends EES_Shortcode
 {
@@ -128,6 +128,14 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 $attributes['table_pages'] = 100;
             }
         }
+        // validate show_venue as a boolean
+        if ( !empty($attributes['show_venues']) ) {
+            $attributes['show_venues'] = filter_var($attributes['show_venues'], FILTER_VALIDATE_BOOLEAN);
+        }
+        // validate show_expired as a boolean
+        if ( !empty($attributes['show_expired']) ) {
+            $attributes['show_expired'] = filter_var($attributes['show_expired'], FILTER_VALIDATE_BOOLEAN);
+        }
         // make sure $attributes is an array
         $attributes = array_merge(
         // defaults
@@ -149,6 +157,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 'table_striping'       => null,
                 'table_search'         => null,
                 'show_all_datetimes'   => false,
+                'show_venues'          => true,
             ),
             (array)$attributes
         );
@@ -165,7 +174,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
         } else {
             $attributes = $this->sanitize_the_attributes($attributes, $custom_sanitization);
         }
-        if ($attributes['footable'] !== false) {
+        if ($attributes['footable'] !== 'false') {
             //FooTable Styles
             wp_register_style(
                 'footable-core',
@@ -188,7 +197,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
             // enqueue scripts
             wp_enqueue_script('footable');
             //FooTable Sorting
-            if ($attributes['table_sort'] !== false) {
+            if ($attributes['table_sort'] !== 'false') {
                 wp_register_script(
                     'footable-sort',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.sort.js',
@@ -199,7 +208,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 wp_enqueue_script('footable-sort');
             }
             //FooTable Striping
-            if ($attributes['table_striping'] !== false) {
+            if ($attributes['table_striping'] !== 'false') {
                 wp_register_script(
                     'footable-striping',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.striping.js',
@@ -210,7 +219,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 wp_enqueue_script('footable-striping');
             }
             //FooTable Pagination
-            if ($attributes['table_paging'] !== false) {
+            if ($attributes['table_paging'] !== 'false') {
                 wp_register_script(
                     'footable-paginate',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.paginate.js',
@@ -221,7 +230,7 @@ class EES_Espresso_Events_Table_Template extends EES_Shortcode
                 wp_enqueue_script('footable-paginate');
             }
             //FooTable Filter
-            if ($attributes['table_search'] !== false) {
+            if ($attributes['table_search'] !== 'false') {
                 wp_register_script(
                     'footable-filter',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.filter.js',
