@@ -215,7 +215,7 @@ class EventsTableTemplate extends EspressoShortcode
      */
     public function enqueueFootableAssets($attributes)
     {
-        if ($attributes['footable'] !== false) {
+        if ($attributes['footable'] !== 'false') {
             //FooTable Styles
             wp_register_style(
                 'footable-core',
@@ -238,7 +238,7 @@ class EventsTableTemplate extends EspressoShortcode
             // enqueue scripts
             wp_enqueue_script('footable');
             //FooTable Sorting
-            if ($attributes['table_sort'] !== false) {
+            if ($attributes['table_sort'] !== 'false') {
                 wp_register_script(
                     'footable-sort',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.sort.js',
@@ -249,7 +249,7 @@ class EventsTableTemplate extends EspressoShortcode
                 wp_enqueue_script('footable-sort');
             }
             //FooTable Striping
-            if ($attributes['table_striping'] !== false) {
+            if ($attributes['table_striping'] !== 'false') {
                 wp_register_script(
                     'footable-striping',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.striping.js',
@@ -260,7 +260,7 @@ class EventsTableTemplate extends EspressoShortcode
                 wp_enqueue_script('footable-striping');
             }
             //FooTable Pagination
-            if ($attributes['table_paging'] !== false) {
+            if ($attributes['table_paging'] !== 'false') {
                 wp_register_script(
                     'footable-paginate',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.paginate.js',
@@ -271,7 +271,7 @@ class EventsTableTemplate extends EspressoShortcode
                 wp_enqueue_script('footable-paginate');
             }
             //FooTable Filter
-            if ($attributes['table_search'] !== false) {
+            if ($attributes['table_search'] !== 'false') {
                 wp_register_script(
                     'footable-filter',
                     EE_EVENTS_TABLE_TEMPLATE_URL . 'scripts' . DS . 'footable.filter.js',
