@@ -43,7 +43,7 @@ class EventsTableTemplate extends EspressoShortcode
      */
     public function cacheExpiration()
     {
-        return 10;
+        return 0;
         // return MINUTE_IN_SECONDS * 15;
     }
 
