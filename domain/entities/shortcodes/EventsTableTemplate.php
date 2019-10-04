@@ -6,8 +6,6 @@ use EEH_Template;
 use EventEspresso\core\services\shortcodes\EspressoShortcode;
 use EventEspresso\TableTemplate\domain\queries\EventsTableTemplateQuery;
 
-defined('EVENT_ESPRESSO_VERSION') || exit;
-
 
 
 /**

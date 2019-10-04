@@ -5,10 +5,6 @@ use EventEspresso\core\services\loaders\Loader;
 use EventEspresso\core\services\loaders\LoaderFactory;
 use EventEspresso\core\services\loaders\LoaderInterface;
 use EventEspresso\core\services\shortcodes\ShortcodeInterface;
-
-if (! defined('EVENT_ESPRESSO_VERSION')) {
-    exit();
-}
 // define the plugin directory path and URL
 define('EE_EVENTS_TABLE_TEMPLATE_PATH', plugin_dir_path(__FILE__));
 define('EE_EVENTS_TABLE_TEMPLATE_URL', plugin_dir_url(__FILE__));
